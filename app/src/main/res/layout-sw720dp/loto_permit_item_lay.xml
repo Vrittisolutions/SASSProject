@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:gravity="center|left"
+        android:layout_marginTop="5dp"
+        android:padding="5dp">
+
+
+        <TextView
+            android:id="@+id/txt_loto_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Camera not working properly"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:layout_weight="1"
+            android:layout_marginRight="5dp"
+            android:inputType="textMultiLine"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backshape_selected_blue"
+            android:text="Attachment"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textAllCaps="false"
+            android:layout_marginRight="5dp"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

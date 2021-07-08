@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/edit_text"
+        android:gravity="center|left"
+        android:orientation="vertical">
+
+
+
+
+        <EditText
+            android:id="@+id/edt_reason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:cursorVisible="true"
+            android:gravity="center|left"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/dark_grey"
+            android:layout_marginRight="20dp"
+            android:hint="Enter reason"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+
+            android:textSize="16dp" />
+
+
+        <EditText
+            android:id="@+id/edt_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text"
+            android:cursorVisible="true"
+            android:gravity="center|left"
+            android:padding="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/dark_grey"
+            android:layout_marginRight="20dp"
+            android:hint="Enter password"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal"
+            android:layout_margin="20dp"
+            >
+            <Button
+                android:id="@+id/txt_submit"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight=".5"
+                android:background="@drawable/backshape_selected_blue"
+                android:text="SUBMIT"
+                android:layout_margin="2dp"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+            <Button
+                android:id="@+id/txt_cancel"
+                android:layout_width="150dp"
+                android:layout_margin="2dp"
+
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_weight=".5"
+                android:background="@drawable/backshape_selected_orange"
+                android:text="CANCEL"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

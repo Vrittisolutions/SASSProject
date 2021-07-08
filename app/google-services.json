@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "494455076709",
+    "firebase_url": "https://sass-4253e.firebaseio.com",
+    "project_id": "sass-4253e",
+    "storage_bucket": "sass-4253e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494455076709:android:5a642a9cb9b3a69e",
+        "android_client_info": {
+          "package_name": "com.vritti.sass"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494455076709-b16cj0epdiudv02dnqrr5hap6ir1pmd2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwxLoiLfVCyILl13FXBSPNS1_yVa7qP7c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

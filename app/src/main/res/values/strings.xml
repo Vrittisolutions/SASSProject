@@ -1,0 +1,104 @@
+<resources>
+    <string name="app_name">"SASS"</string>
+
+    <string name="application_name">SAFETY AND SECURITY SYSTEM</string>
+
+
+    <array name="operation">
+
+        <item>Hot work</item>
+        <item>Excavation</item>
+        <item>Confined space entry</item>
+        <item>Work at height</item>
+        <item>Lifting permit</item>
+        <item>Cleaning and degassing</item>
+
+    </array>
+    <array name="type_insurance">
+        <item>Type of Insurance</item>
+        <item>ESIC</item>
+        <item>WIC</item>
+
+
+
+    </array>
+    <array name="weight">
+        <item>Kg</item>
+        <item>ton</item>
+    </array>
+
+
+    <array name="depot">
+
+        <item>Pune</item>
+        <item>Mumbai</item>
+        <item>Nagpur</item>
+        <item>Manglore</item>
+
+
+    </array>
+    <array name="manager">
+        <item>Select</item>
+        <item>Nilesh</item>
+        <item>Akash</item>
+        <item>Ankur</item>
+        <item>Mohit</item>
+    </array>
+
+
+    <array name="contractor">
+
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>D</item>
+        <item>E</item>
+
+
+    </array>
+    <array name="no">
+
+        <item>Per1</item>
+        <item>Per2</item>
+        <item>Per3</item>
+        <item>Per4</item>
+
+
+    </array>
+
+    <array name="options">
+
+        <item>Scaffolding Required</item>
+        <item>Yes</item>
+        <item>No</item>
+        <item>Scaffolding inspected</item>
+        <item>Yes</item>
+        <item>No</item>
+        <item>Work on Fragile Roof</item>
+        <item>Yes</item>
+        <item>No</item>
+    </array>
+    <string name="data">Measurement of % O2 in the air at screen or roof (entry prohibited if O2 20.5 and or 23)</string>
+    <string name="Toxic_Top">"uhjikjjkh"</string>
+    <string name="Toxic_Centre" />
+    <string name="Toxic_Gasname2" />
+    <string name="Toxic_Percentage1" />
+    <string name="Toxic_Percentage2" />
+    <bool name="is_tablet">false</bool>
+
+    <string name="one">Do not start up on shutdown equipment/installation without using appropriate,written operating procedure</string>
+    <string name="two">Do not exceed speed limit</string>
+    <string name="three">Do not carry out work if you do not have right tool for the job and environment </string>
+    <string name="four">Do not access installations or perform work without wearing general and task specific PPE </string>
+    <string name="five">Do not perform work without valid work permit or authorization</string>
+    <string name="six">Do not walk and stand under the load while lifting is taken place</string>
+    <string name="seven">Do not perform work without checking that power and product supply has been rendered inoperative</string>
+    <string name="e">Do not enter confined space until isolation has been verified and the atmosphere checked</string>
+    <string name="n">Do not perform excavation work without a valid work permit comprising a map of all underground hazards</string>
+    <string name="t">Do not work at height without a safety harness when there is no collective protective equipment </string>
+    <string name="el">Do not make any technical or organizational changes without prior authorization </string>
+    <string name="tw">Do not perform simultaneous operations or co activities without prior inspections</string>
+
+
+
+</resources>
