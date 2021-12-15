@@ -1670,8 +1670,13 @@ public class ConfinedSpaceEntryActivity extends AppCompatActivity {
                                 System.out.println(date);
                                 if (WAStartTimeHr < selectedHour && selectedHour < WAEndTimeHr) {
                                     btn_fromtime.setText(time);
-                                    if ((selectedHour + 4) > WAEndTimeHr) {
-                                        btn_totime.setText(WAEndTime1);
+                                    if ((selectedHour + 4) >= WAEndTimeHr) {
+                                        if(selectedMinute > WAEndTimeMin){
+                                            String time12 =  UpdateTime.updateTime(WAEndTimeHr, WAEndTimeMin);
+                                           /* edt_totime.setText(time12);
+                                        }else{*/
+                                            btn_totime.setText(WAEndTime1);
+                                        }
 
                                     } else {
                                         if (selectedHour > 10 && selectedHour < 13) {

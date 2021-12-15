@@ -162,7 +162,7 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
     String json;
     Type type;
     String authorize = "", authorize1 = "", authorize2 = "", authorize3 = "", authorize4 = "",
-            PermitClosed = "", SpotCheck = "", StationId = "", PermitNo = "", categoryDesc = "",userLoginId="";
+            PermitClosed = "", SpotCheck = "", StationId = "", PermitNo = "", categoryDesc = "", userLoginId = "";
     int check = 0;
     private String serverResponseMessage, path, Imagefilename, PKFormId = "", formcode = "";
     String contractorId = "", OperationId = "", LocationId = "";
@@ -298,14 +298,16 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                         btn_cancel_date.setTextColor(Color.parseColor("#000000"));
 
                     }
-                }else{btn_fromdate.setEnabled(true);}
+                } else {
+                    btn_fromdate.setEnabled(true);
+                }
 
 
-               // if (PermitStatus.equals("A") || PermitStatus.equals("P")) {
-                    len_p_closed.setVisibility(View.VISIBLE);
-                    tx_p_closed.setVisibility(View.VISIBLE);
-                    txt_cancel_permit.setVisibility(View.VISIBLE);
-                    len_cancel_permit.setVisibility(View.VISIBLE);
+                // if (PermitStatus.equals("A") || PermitStatus.equals("P")) {
+                len_p_closed.setVisibility(View.VISIBLE);
+                tx_p_closed.setVisibility(View.VISIBLE);
+                txt_cancel_permit.setVisibility(View.VISIBLE);
+                len_cancel_permit.setVisibility(View.VISIBLE);
 
                /* } else {
                     len_p_closed.setVisibility(View.GONE);
@@ -371,7 +373,7 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
         date = day + "-"
                 + String.format("%02d", (month + 1))
                 + "-" + Year;
-        date =  DateFormatChange.formateDateFromstring("dd-MM-yyyy", "dd-MM-yyyy", day + "-"
+        date = DateFormatChange.formateDateFromstring("dd-MM-yyyy", "dd-MM-yyyy", day + "-"
                 + String.format("%02d", (month + 1))
                 + "-" + Year);
         btn_fromdate.setText(date);
@@ -1355,7 +1357,7 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                 RadioButton radiobtn = (RadioButton) findViewById(selectedId);
 
                 String radvalue = radiobtn.getText().toString();
-                if(PermitStatus == null || PermitStatus.equalsIgnoreCase("P")) {
+                if (PermitStatus == null || PermitStatus.equalsIgnoreCase("P")) {
                     if (radvalue.equalsIgnoreCase("Yes")) {
                         scafflodingval = "Y";
                         radiogroup_inspect.setEnabled(true);
@@ -1579,8 +1581,8 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                 TimePickerDialog mTimePicker;
                 UpdateTime.updateTime(hour, minute);
 
-              //  btn_fromtime.setText(UpdateTime.updateTime(hour, minute));
-              //  btn_totime.setText(UpdateTime.updateTime(hour1, minute));
+                //  btn_fromtime.setText(UpdateTime.updateTime(hour, minute));
+                //  btn_totime.setText(UpdateTime.updateTime(hour1, minute));
 
                 mTimePicker = new TimePickerDialog(WorkAtHeightPermitActivity.this,
                         new TimePickerDialog.OnTimeSetListener() {
@@ -1620,7 +1622,7 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                                 System.out.println(date);
                                 if (WAStartTimeHr < selectedHour && selectedHour < WAEndTimeHr) {
                                     btn_fromtime.setText(time);
-                                    if ((selectedHour + 9) > WAEndTimeHr) {
+                                    if ((selectedHour + 9) >= WAEndTimeHr) {
                                         if (selectedHour == 13) {
                                             if (WAStartTime.equals("")) {
                                                 btn_fromtime.setText(time);
@@ -1702,7 +1704,14 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                                     } else if (WAStartTimeHr == selectedHour && selectedMinute >= WAStartTimemin) {
                                         if (selectedHour <= 13) {
                                             time1 = UpdateTime.updateTime((selectedHour + 9), selectedMinute);
-                                            btn_totime.setText(time1);
+                                            if (selectedHour <= WAEndTimeHr) {
+                                                if (selectedMinute <= WAEndTimeMin) {
+                                                    btn_totime.setText(time1);
+                                                } else {
+                                                    btn_totime.setText(WAEndTime);
+                                                }
+                                            }
+
                                         } else {
                                             time1 = UpdateTime.updateTime((selectedHour + 8), selectedMinute);
                                             btn_totime.setText(time1);
@@ -4780,122 +4789,117 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
         safetyToolsArrayList = safetyAdapter.getArrayList();
 
         if (safetyToolsArrayList.size() > 0) {
-            if (safetyToolsArrayList.size() > 0) {
-                user = new String[safetyToolsArrayList.size()];
-                for (int i = 0; i < safetyToolsArrayList.size(); i++) {
-                    String Safety = safetyToolsArrayList.get(i).getSafetyToolMasterId();
-                    user[i] = Safety.toString();
-                    safetytools = TextUtils.join(",", user);
-                    if (safetyToolsArrayList.get(i).getSafetyToolDesc().equals("Other(s)")) {
-                        if (safetyToolsArrayList.get(i).getRemarks() != null) {
-                            safety_Others = safetyToolsArrayList.get(i).getRemarks();
+            user = new String[safetyToolsArrayList.size()];
+            for (int i = 0; i < safetyToolsArrayList.size(); i++) {
+                String Safety = safetyToolsArrayList.get(i).getSafetyToolMasterId();
+                user[i] = Safety.toString();
+                safetytools = TextUtils.join(",", user);
+                if (safetyToolsArrayList.get(i).getSafetyToolDesc().equals("Other(s)")) {
+                    if (safetyToolsArrayList.get(i).getRemarks() != null) {
+                        safety_Others = safetyToolsArrayList.get(i).getRemarks();
+                    }
+
+                }
+            }
+
+        }
+
+
+        workHeightArrayList = generlConditionAdapter.getArrayList();
+
+        if (workHeightArrayList.size() > 0) {
+            checkid = new String[workHeightArrayList.size()];
+            for (int i = 0; i < workHeightArrayList.size(); i++) {
+                String ids = workHeightArrayList.get(i).getPKQuesID();
+                checkid[i] = ids.toString();
+                checkids = TextUtils.join(",", checkid);
+
+                if (workHeightArrayList.get(i).getSelectionText().equalsIgnoreCase("Other(s)")) {
+
+                    if (workHeightArrayList.get(i).getPKQuesID().equals("08F365BF-4B90-49EF-AFEF-15F5AEEA1389")) {
+                        if (workHeightArrayList.get(i).getRemarks() != null) {
+                            gen_Others1 = workHeightArrayList.get(i).getRemarks();
                         }
 
+                    } else if (workHeightArrayList.get(i).getPKQuesID().equals("1E12389B-9589-49FB-AA10-67ED23B29F88")) {
+                        if (workHeightArrayList.get(i).getRemarks() != null) {
+                            gen_Others2 = workHeightArrayList.get(i).getRemarks();
+                        }
                     }
                 }
 
             }
 
+        }
 
-            workHeightArrayList = generlConditionAdapter.getArrayList();
-
-            if (workHeightArrayList.size() > 0) {
-                if (workHeightArrayList.size() > 0) {
-                    checkid = new String[workHeightArrayList.size()];
-                    for (int i = 0; i < workHeightArrayList.size(); i++) {
-                        String ids = workHeightArrayList.get(i).getPKQuesID();
-                        checkid[i] = ids.toString();
-                        checkids = TextUtils.join(",", checkid);
-
-                        if (workHeightArrayList.get(i).getSelectionText().equalsIgnoreCase("Other(s)")) {
-
-                            if (workHeightArrayList.get(i).getPKQuesID().equals("08F365BF-4B90-49EF-AFEF-15F5AEEA1389")) {
-                                if (workHeightArrayList.get(i).getRemarks() != null) {
-                                    gen_Others1 = workHeightArrayList.get(i).getRemarks();
-                                }
-
-                            } else if (workHeightArrayList.get(i).getPKQuesID().equals("1E12389B-9589-49FB-AA10-67ED23B29F88")) {
-                                if (workHeightArrayList.get(i).getRemarks() != null) {
-                                    gen_Others2 = workHeightArrayList.get(i).getRemarks();
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-
-                Activityjson = new JSONObject();
-                try {
-                    // Activityjson.put("",formcode);
-                    Activityjson.put("FormId", PKFormId);
-                    Activityjson.put("PermitNo", PermitNo);
-                    Activityjson.put("FkWareHouseMasterId", StationId);
-                    // Activityjson.put("FkWorkAuthorizationMasterId",PreventionPlan_Code);
-                    Activityjson.put("PreventionPlanRef", PreventionPlan_Code);
-                    Activityjson.put("PermitFromDate", StartDate);
-                    Activityjson.put("PermitFromTime", permitfromtime);
-                    Activityjson.put("PermitToTime", permittotime);
-                    Activityjson.put("fkContractorId", contractorId);
-                    Activityjson.put("fkOperationMasterId", OperationId);
-                    Activityjson.put("FkLocationMasterId", LocationId);
-                    Activityjson.put("ScaffoldingRequired", scafflodingval);
-                    Activityjson.put("Scaffoldinginspected", inspectetdval);
-                    Activityjson.put("WorkonFragileRoof", fragileval);
-                    Activityjson.put("MethodOperationStatus", checkoperation);
-                    Activityjson.put("ChecksId", checkids);
-                    Activityjson.put("SafetyToolMasterId", safetytools);
-                    Activityjson.put("AuthorizeBy1", AuthorizeId);
-                    Activityjson.put("AuthorizeBy2", Authorize1Id);
-                    Activityjson.put("RespContractorId", contractorId);
+        Activityjson = new JSONObject();
+        try {
+            // Activityjson.put("",formcode);
+            Activityjson.put("FormId", PKFormId);
+            Activityjson.put("PermitNo", PermitNo);
+            Activityjson.put("FkWareHouseMasterId", StationId);
+            // Activityjson.put("FkWorkAuthorizationMasterId",PreventionPlan_Code);
+            Activityjson.put("PreventionPlanRef", PreventionPlan_Code);
+            Activityjson.put("PermitFromDate", StartDate);
+            Activityjson.put("PermitFromTime", permitfromtime);
+            Activityjson.put("PermitToTime", permittotime);
+            Activityjson.put("fkContractorId", contractorId);
+            Activityjson.put("fkOperationMasterId", OperationId);
+            Activityjson.put("FkLocationMasterId", LocationId);
+            Activityjson.put("ScaffoldingRequired", scafflodingval);
+            Activityjson.put("Scaffoldinginspected", inspectetdval);
+            Activityjson.put("WorkonFragileRoof", fragileval);
+            Activityjson.put("MethodOperationStatus", checkoperation);
+            Activityjson.put("ChecksId", checkids);
+            Activityjson.put("SafetyToolMasterId", safetytools);
+            Activityjson.put("AuthorizeBy1", AuthorizeId);
+            Activityjson.put("AuthorizeBy2", Authorize1Id);
+            Activityjson.put("RespContractorId", contractorId);
 
                     /*Activityjson.put("",AuthorizeDate);
                     Activityjson.put("",Authorize1Date);
                     Activityjson.put("",Authorize2Date);*/
-                    Activityjson.put("PermitCloseDate", permitcloseddate);
-                    Activityjson.put("PermitCloseBy", Permitclosed);
-                    Activityjson.put("SpotCheckBy", Spotcheck);
-                    Activityjson.put("SpotCheckDate", spotcheckdate);
-                    Activityjson.put("PermitCancelBy", cancelId);
-                    Activityjson.put("PermitCancelDate", cancelDate);
-                    Activityjson.put("PermitCloseRemark", permitcloseremark);
-                    Activityjson.put("WH_ChkOthers1", gen_Others1);
-                    Activityjson.put("WH_ChkOthers2", gen_Others2);
-                    Activityjson.put("WH_ProOthers", safety_Others);
-                    Activityjson.put("GoldenRulesId", goldenRulesList);
+            Activityjson.put("PermitCloseDate", permitcloseddate);
+            Activityjson.put("PermitCloseBy", Permitclosed);
+            Activityjson.put("SpotCheckBy", Spotcheck);
+            Activityjson.put("SpotCheckDate", spotcheckdate);
+            Activityjson.put("PermitCancelBy", cancelId);
+            Activityjson.put("PermitCancelDate", cancelDate);
+            Activityjson.put("PermitCloseRemark", permitcloseremark);
+            Activityjson.put("WH_ChkOthers1", gen_Others1);
+            Activityjson.put("WH_ChkOthers2", gen_Others2);
+            Activityjson.put("WH_ProOthers", safety_Others);
+            Activityjson.put("GoldenRulesId", goldenRulesList);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
 
-                }
-                //final String FinalJsonObject = Activityjson.toString();
+        }
+        //final String FinalJsonObject = Activityjson.toString();
             /*String URL = CompanyURL+ WebAPIUrl.api_PostWorkAtHeight;
             String op = "Success";*/
 
-                final String FinalJsonObject = Activityjson.toString();
+        final String FinalJsonObject = Activityjson.toString();
 
 
-                if (CommonClass.checkNet(WorkAtHeightPermitActivity.this)) {
-                    showProgress();
-                    new StartSession(WorkAtHeightPermitActivity.this, new CallbackInterface() {
-                        @Override
-                        public void callMethod() {
-                            new DownloadPostData().execute(FinalJsonObject);
-                        }
-
-                        @Override
-                        public void callfailMethod(String msg) {
-                            CommonClass.displayToast(WorkAtHeightPermitActivity.this, msg);
-                            dismissProgress();
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+        if (CommonClass.checkNet(WorkAtHeightPermitActivity.this)) {
+            showProgress();
+            new StartSession(WorkAtHeightPermitActivity.this, new CallbackInterface() {
+                @Override
+                public void callMethod() {
+                    new DownloadPostData().execute(FinalJsonObject);
                 }
 
-
-            }
+                @Override
+                public void callfailMethod(String msg) {
+                    CommonClass.displayToast(WorkAtHeightPermitActivity.this, msg);
+                    dismissProgress();
+                }
+            });
+        } else {
+            Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
         }
+
     }
 
     public void editjson() {
@@ -4932,123 +4936,121 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
         safetyToolsArrayList = safetyAdapter.getArrayList();
 
         if (safetyToolsArrayList.size() > 0) {
-            if (safetyToolsArrayList.size() > 0) {
-                user = new String[safetyToolsArrayList.size()];
-                for (int i = 0; i < safetyToolsArrayList.size(); i++) {
-                    String Safety = safetyToolsArrayList.get(i).getSafetyToolMasterId();
-                    user[i] = Safety.toString();
-                    safetytools = TextUtils.join(",", user);
-                    if (safetyToolsArrayList.get(i).getSafetyToolDesc().equals("Other(s)")) {
-                        if (safetyToolsArrayList.get(i).getRemarks() != null) {
-                            safety_Others = safetyToolsArrayList.get(i).getRemarks();
+            user = new String[safetyToolsArrayList.size()];
+            for (int i = 0; i < safetyToolsArrayList.size(); i++) {
+                String Safety = safetyToolsArrayList.get(i).getSafetyToolMasterId();
+                user[i] = Safety.toString();
+                safetytools = TextUtils.join(",", user);
+                if (safetyToolsArrayList.get(i).getSafetyToolDesc().equals("Other(s)")) {
+                    if (safetyToolsArrayList.get(i).getRemarks() != null) {
+                        safety_Others = safetyToolsArrayList.get(i).getRemarks();
+                    }
+
+                }
+            }
+
+        }
+
+
+        workHeightArrayList = generlConditionAdapter.getArrayList();
+
+
+        if (workHeightArrayList.size() > 0) {
+            checkid = new String[workHeightArrayList.size()];
+            for (int i = 0; i < workHeightArrayList.size(); i++) {
+                String ids = workHeightArrayList.get(i).getPKQuesID();
+                checkid[i] = ids.toString();
+                checkids = TextUtils.join(",", checkid);
+
+                if (workHeightArrayList.get(i).getSelectionText().equalsIgnoreCase("Other(s)")) {
+
+                    if (workHeightArrayList.get(i).getPKQuesID().equals("08F365BF-4B90-49EF-AFEF-15F5AEEA1389")) {
+                        if (workHeightArrayList.get(i).getRemarks() != null) {
+                            gen_Others1 = workHeightArrayList.get(i).getRemarks();
                         }
 
+                    } else if (workHeightArrayList.get(i).getPKQuesID().equals("1E12389B-9589-49FB-AA10-67ED23B29F88")) {
+                        if (workHeightArrayList.get(i).getRemarks() != null) {
+                            gen_Others2 = workHeightArrayList.get(i).getRemarks();
+                        }
                     }
                 }
 
             }
 
+        }
 
-            workHeightArrayList = generlConditionAdapter.getArrayList();
-
-            if (workHeightArrayList.size() > 0) {
-                if (workHeightArrayList.size() > 0) {
-                    checkid = new String[workHeightArrayList.size()];
-                    for (int i = 0; i < workHeightArrayList.size(); i++) {
-                        String ids = workHeightArrayList.get(i).getPKQuesID();
-                        checkid[i] = ids.toString();
-                        checkids = TextUtils.join(",", checkid);
-
-                        if (workHeightArrayList.get(i).getSelectionText().equalsIgnoreCase("Other(s)")) {
-
-                            if (workHeightArrayList.get(i).getPKQuesID().equals("08F365BF-4B90-49EF-AFEF-15F5AEEA1389")) {
-                                if (workHeightArrayList.get(i).getRemarks() != null) {
-                                    gen_Others1 = workHeightArrayList.get(i).getRemarks();
-                                }
-
-                            } else if (workHeightArrayList.get(i).getPKQuesID().equals("1E12389B-9589-49FB-AA10-67ED23B29F88")) {
-                                if (workHeightArrayList.get(i).getRemarks() != null) {
-                                    gen_Others2 = workHeightArrayList.get(i).getRemarks();
-                                }
-                            }
-                        }
-
-                    }
-
-                }
-
-                Activityjson = new JSONObject();
-                try {
-                    // Activityjson.put("",formcode);
-                    Activityjson.put("FormId", PKFormId);
-                    Activityjson.put("PermitNo", PermitNo);
-                    Activityjson.put("FkWareHouseMasterId", StationId);
-                    // Activityjson.put("FkWorkAuthorizationMasterId",PreventionPlan_Code);
-                    Activityjson.put("PreventionPlanRef", PreventionPlan_Code);
-                    Activityjson.put("PermitFromDate", StartDate);
-                    Activityjson.put("PermitFromTime", permitfromtime);
-                    Activityjson.put("PermitToTime", permittotime);
-                    Activityjson.put("fkContractorId", contractorId);
-                    Activityjson.put("fkOperationMasterId", OperationId);
-                    Activityjson.put("FkLocationMasterId", LocationId);
-                    Activityjson.put("ScaffoldingRequired", scafflodingval);
-                    Activityjson.put("Scaffoldinginspected", inspectetdval);
-                    Activityjson.put("WorkonFragileRoof", fragileval);
-                    Activityjson.put("MethodOperationStatus", checkoperation);
-                    Activityjson.put("ChecksId", checkids);
-                    Activityjson.put("SafetyToolMasterId", safetytools);
-                    Activityjson.put("AuthorizeBy1", AuthorizeId);
-                    Activityjson.put("AuthorizeBy2", Authorize1Id);
-                    Activityjson.put("RespContractorId", contractorId);
+        Activityjson = new JSONObject();
+        try {
+            // Activityjson.put("",formcode);
+            Activityjson.put("FormId", PKFormId);
+            Activityjson.put("PermitNo", PermitNo);
+            Activityjson.put("FkWareHouseMasterId", StationId);
+            // Activityjson.put("FkWorkAuthorizationMasterId",PreventionPlan_Code);
+            Activityjson.put("PreventionPlanRef", PreventionPlan_Code);
+            Activityjson.put("PermitFromDate", StartDate);
+            Activityjson.put("PermitFromTime", permitfromtime);
+            Activityjson.put("PermitToTime", permittotime);
+            Activityjson.put("fkContractorId", contractorId);
+            Activityjson.put("fkOperationMasterId", OperationId);
+            Activityjson.put("FkLocationMasterId", LocationId);
+            Activityjson.put("ScaffoldingRequired", scafflodingval);
+            Activityjson.put("Scaffoldinginspected", inspectetdval);
+            Activityjson.put("WorkonFragileRoof", fragileval);
+            Activityjson.put("MethodOperationStatus", checkoperation);
+            Activityjson.put("ChecksId", checkids);
+            Activityjson.put("SafetyToolMasterId", safetytools);
+            Activityjson.put("AuthorizeBy1", AuthorizeId);
+            Activityjson.put("AuthorizeBy2", Authorize1Id);
+            Activityjson.put("RespContractorId", contractorId);
                     /*Activityjson.put("",AuthorizeDate);
                     Activityjson.put("",Authorize1Date);
                     Activityjson.put("",Authorize2Date);*/
-                    Activityjson.put("PermitCloseDate", permitcloseddate);
-                    Activityjson.put("PermitCloseBy", Permitclosed);
-                    Activityjson.put("SpotCheckBy", Spotcheck);
-                    Activityjson.put("SpotCheckDate", spotcheckdate);
-                    Activityjson.put("PermitCancelBy", cancelId);
-                    Activityjson.put("PermitCancelDate", cancelDate);
-                    Activityjson.put("PermitCloseRemark", permitcloseremark);
-                    Activityjson.put("WH_ChkOthers1", gen_Others1);
-                    Activityjson.put("WH_ChkOthers2", gen_Others2);
-                    Activityjson.put("WH_ProOthers", safety_Others);
-                    Activityjson.put("GoldenRulesId", goldenRulesList);
+            Activityjson.put("PermitCloseDate", permitcloseddate);
+            Activityjson.put("PermitCloseBy", Permitclosed);
+            Activityjson.put("SpotCheckBy", Spotcheck);
+            Activityjson.put("SpotCheckDate", spotcheckdate);
+            Activityjson.put("PermitCancelBy", cancelId);
+            Activityjson.put("PermitCancelDate", cancelDate);
+            Activityjson.put("PermitCloseRemark", permitcloseremark);
+            Activityjson.put("WH_ChkOthers1", gen_Others1);
+            Activityjson.put("WH_ChkOthers2", gen_Others2);
+            Activityjson.put("WH_ProOthers", safety_Others);
+            Activityjson.put("GoldenRulesId", goldenRulesList);
 
 
-                } catch (Exception e) {
-                    e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
 
-                }
-                //final String FinalJsonObject = Activityjson.toString();
+        }
+        //final String FinalJsonObject = Activityjson.toString();
             /*String URL = CompanyURL+ WebAPIUrl.api_PostWorkAtHeight;
             String op = "Success";*/
 
-                final String FinalEditJsonObject = Activityjson.toString();
+        final String FinalEditJsonObject = Activityjson.toString();
 
 
-                if (CommonClass.checkNet(WorkAtHeightPermitActivity.this)) {
-                    showProgress();
-                    new StartSession(WorkAtHeightPermitActivity.this, new CallbackInterface() {
-                        @Override
-                        public void callMethod() {
-                            new DownloadEditPostData().execute(FinalEditJsonObject);
-                        }
-
-                        @Override
-                        public void callfailMethod(String msg) {
-                            CommonClass.displayToast(WorkAtHeightPermitActivity.this, msg);
-                            dismissProgress();
-                        }
-                    });
-                } else {
-                    Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+        if (CommonClass.checkNet(WorkAtHeightPermitActivity.this)) {
+            showProgress();
+            new StartSession(WorkAtHeightPermitActivity.this, new CallbackInterface() {
+                @Override
+                public void callMethod() {
+                    new DownloadEditPostData().execute(FinalEditJsonObject);
                 }
 
-
-            }
+                @Override
+                public void callfailMethod(String msg) {
+                    CommonClass.displayToast(WorkAtHeightPermitActivity.this, msg);
+                    dismissProgress();
+                }
+            });
+        } else {
+            Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
         }
+
+
     }
+
 
     public class DownloadPostData extends AsyncTask<String, Void, String> {
 
@@ -5425,25 +5427,24 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                             WAEndTime = UpdateTime.updateTime(WAEndTimeHr, WAEndTimeMin);
                             WAEndTime = UpdateTime.updateTime((WAStartTimeHr + 9), WAStartTimemin);
                             //   UpdateTime.updateTime((WAStartTimeHr+4),WAStartTimemin);
-                        if ((WAStartTimeHr + 9) > 13 && (WAStartTimeHr + 9) < 14) {
-                            WAEndTime = "01:00 PM";
-                        } else {
-                            if (WAEndTimeHr > 14 && (WAStartTimeHr + 9) < 13) {
-                                WAEndTime = UpdateTime.updateTime(WAStartTimeHr + 1, WAStartTimemin);
-                            }
-                            else {
-                                if (WAEndTimeHr >= WAStartTimeHr + 9) {
-                                    WAEndTime = UpdateTime.updateTime((WAStartTimeHr + 9), WAStartTimemin);
+                            if ((WAStartTimeHr + 9) > 13 && (WAStartTimeHr + 9) < 14) {
+                                WAEndTime = "01:00 PM";
+                            } else {
+                                if (WAEndTimeHr > 14 && (WAStartTimeHr + 9) < 13) {
+                                    WAEndTime = UpdateTime.updateTime(WAStartTimeHr + 1, WAStartTimemin);
                                 } else {
-                                    if ((WAStartTimeHr + 9) >= 24) {
-                                        WAEndTime = "11:59 PM";
+                                    if (WAEndTimeHr >= WAStartTimeHr + 9) {
+                                        WAEndTime = UpdateTime.updateTime((WAStartTimeHr + 9), WAStartTimemin);
                                     } else {
-                                        WAEndTime = jorder.getString("ToTime2");
-                                        Toast.makeText(WorkAtHeightPermitActivity.this, "You cannot choose time greater than work authorization end time", Toast.LENGTH_SHORT).show();
+                                        if ((WAStartTimeHr + 9) >= 24) {
+                                            WAEndTime = "11:59 PM";
+                                        } else {
+                                            WAEndTime = jorder.getString("ToTime2");
+                                            Toast.makeText(WorkAtHeightPermitActivity.this, "You cannot choose time greater than work authorization end time", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 }
                             }
-                        }
                             btn_totime.setText(WAEndTime);
                             modeefirst = 1;
                         }
@@ -5560,7 +5561,7 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
         categoryDesc = categorydesc;
 
         txt_authorizeArrayList = new ArrayList<>();
-        if(!StationId.equals("Select")) {
+        if (!StationId.equals("Select")) {
             if (authorizedPersonArrayList != null) {
 
 
@@ -5608,7 +5609,7 @@ public class WorkAtHeightPermitActivity extends AppCompatActivity {
                 //authorizedPersonAdapter.updateList(txt_authorizeArrayList);
                 // spinner_authorize.setAdapter(authorizedPersonAdapter);
             }
-        } else{
+        } else {
             AuthorizedPerson authorizedPerson = new AuthorizedPerson();
             authorizedPerson.setAuthorizename("Select");
             txt_authorizeArrayList.add(authorizedPerson);
