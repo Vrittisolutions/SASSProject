@@ -61,7 +61,8 @@ public class ImageFullScreenActivity extends AppCompatActivity {
 
 
         //String  image="http://z207.ekatm.com/Attachments/View%20Attachment/"+Path;
-        String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+Path;
+        //String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+Path;
+        String  image="https://ail.ekatm.co.in/Attachments/View%20Attachment/"+Path;
         img_full.setImageURI(image);
 
 

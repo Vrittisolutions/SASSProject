@@ -231,6 +231,7 @@ public class ConfinedSpaceEntryActivity extends AppCompatActivity {
     String WAStartTime = "", WAEndTime = "", WAEndTime1 = "";
     int WAEndTimeHr, WAEndTimeMin, WAStartTimeHr, WAStartTimemin;
     int modeefirst = -1;
+    private String EnvMasterId;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -818,6 +819,8 @@ public class ConfinedSpaceEntryActivity extends AppCompatActivity {
         userpreferences = getSharedPreferences(LoginActivity.USERINFO,
                 Context.MODE_PRIVATE);
         CompanyURL = userpreferences.getString("CompanyURL", "");
+        EnvMasterId = userpreferences.getString("EnvMasterId", "");
+
         grid_safety = findViewById(R.id.grid_safety);
 
 
@@ -5966,7 +5969,8 @@ public class ConfinedSpaceEntryActivity extends AppCompatActivity {
             String response;
             try {
                 String url = CompanyURL + WebAPIUrl.api_GetIsValidUser + "?AppEnvMasterId=" +
-                        URLEncoder.encode("z207", "UTF-8") + "&PlantId=" +
+                        URLEncoder.encode(EnvMasterId, "UTF-8") + "&PlantId=" +
+                       // URLEncoder.encode("z207", "UTF-8") + "&PlantId=" +
                         URLEncoder.encode("1", "UTF-8") + "&UserLoginId=" +
                         URLEncoder.encode(id, "UTF-8") + "&UserPwd=" + URLEncoder.encode(Password, "UTF-8");
                 res = CommonClass.OpenConnection(url, ConfinedSpaceEntryActivity.this);

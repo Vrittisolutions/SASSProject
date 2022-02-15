@@ -56,7 +56,8 @@ public class LoginActivity extends AppCompatActivity {
     String App_version;
     private JobScheduler mJobScheduler;
 
-   public String CompanyURL ="http://z207.ekatm.co.in";
+  // public String CompanyURL ="http://z207.ekatm.co.in";
+   public String CompanyURL ="https://ail.ekatm.co.in";
 
 
    // public String CompanyURL ="http://192.168.1.221";

@@ -162,7 +162,7 @@ public class CleansingPermitActivity extends AppCompatActivity {
     LocationOperationAdapter locationOperationAdapter;
     DepotAdapter depotAdapter;
 
-    String CompanyURL;
+    String CompanyURL,EnvMasterId="";
     ProgressBar mprogress;
     SharedPreferences sharedPrefs;
     Gson gson;
@@ -415,6 +415,8 @@ public class CleansingPermitActivity extends AppCompatActivity {
         userpreferences = getSharedPreferences(LoginActivity.USERINFO,
                 Context.MODE_PRIVATE);
         CompanyURL = userpreferences.getString("CompanyURL", "");
+        EnvMasterId = userpreferences.getString("EnvMasterId", "");
+
 
         contractorListActivityArrayList = new ArrayList<>();
         authorizedPersonArrayList = new ArrayList<>();
@@ -5847,7 +5849,8 @@ public class CleansingPermitActivity extends AppCompatActivity {
             String response;
             try {
                 String url = CompanyURL + WebAPIUrl.api_GetIsValidUser + "?AppEnvMasterId=" +
-                        URLEncoder.encode("z207", "UTF-8") + "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
+                        //URLEncoder.encode("z207", "UTF-8") + "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
+                        URLEncoder.encode(EnvMasterId, "UTF-8") + "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
                         "&UserLoginId=" + URLEncoder.encode(id, "UTF-8") + "&UserPwd=" + URLEncoder.encode(Password, "UTF-8");
                 res = CommonClass.OpenConnection(url, CleansingPermitActivity.this);
                 response = res.toString().replaceAll("\\\\", "");

@@ -4895,7 +4895,7 @@ public class WorkAuthorizationActivity extends AppCompatActivity {
 
             String response;
             try {
-                String url = CompanyURL + WebAPIUrl.api_GetIsValidUser + "?AppEnvMasterId=" + URLEncoder.encode("z207", "UTF-8") +
+                String url = CompanyURL + WebAPIUrl.api_GetIsValidUser + "?AppEnvMasterId=" + URLEncoder.encode("ail", "UTF-8") +
                         "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
                         "&UserLoginId=" + URLEncoder.encode(loginId, "UTF-8") + "&UserPwd=" + URLEncoder.encode(Password, "UTF-8");
                 res = CommonClass.OpenConnection(url, WorkAuthorizationActivity.this);
@@ -6000,7 +6000,8 @@ public class WorkAuthorizationActivity extends AppCompatActivity {
                         Electricimgpost = jsonObject.getString("ElectricalImageName");
                         Spotimgpost = jsonObject.getString("SpotImage");
 
-                        String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+Spotimgpost;
+                       // String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+Spotimgpost;
+                        String  image="https://ail.ekatm.co.in/Attachments/View%20Attachment/"+Spotimgpost;
                         img_camera.setVisibility(View.VISIBLE);
                         img_display.setVisibility(View.VISIBLE);
                         img_display.setImageURI(image);

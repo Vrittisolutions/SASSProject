@@ -127,13 +127,15 @@ public class InstallationListAdapter extends BaseAdapter {
                 holder.img_display.setVisibility(View.VISIBLE);
                 holder.len_camera.setVisibility(View.VISIBLE);
                 path = installationPreparationArrayList.get(position).getiImg();
-                String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+path;
+                String  image="https://ail.ekatm.co.in/Attachments/View%20Attachment/"+path;
+                //String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+path;
                 holder.img_display.setImageURI(image);
             } else if (installationPreparationArrayList.get(position).getProjectCode().equals("ECW")) {
                 holder.img_display.setVisibility(View.VISIBLE);
                 holder.len_camera.setVisibility(View.VISIBLE);
                 path = installationPreparationArrayList.get(position).geteImg();
-                String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+path;
+                String  image="https://ail.ekatm.co.in/Attachments/View%20Attachment/"+path;
+               // String  image="http://z207.ekatm.co.in/Attachments/View%20Attachment/"+path;
                 holder.img_display.setImageURI(image);
             }
 

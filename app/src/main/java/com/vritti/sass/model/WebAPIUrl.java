@@ -7,7 +7,8 @@ package com.vritti.sass.model;
 public class WebAPIUrl {
     //public static final String CompanyURL = "192.168.1.221";
 
-    public static String CompanyURL = "http://z207.ekatm.co.in";
+   // public static String CompanyURL = "http://z207.ekatm.co.in";
+    public static String CompanyURL = "https://ail.ekatm.co.in";
     //public static final String CompanyURL ="192.168.1.99:81";
     public static final String api_GetSessions = "/api/LoginAPI/GetSessions";
     public static final String api_GetIsValidUser = "/api/LoginAPI/GetIsValidUser";

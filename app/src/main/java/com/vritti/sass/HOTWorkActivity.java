@@ -3278,7 +3278,8 @@ public class HOTWorkActivity extends AppCompatActivity {
             String response;
             try {
                 String url = CompanyURL + WebAPIUrl.api_GetIsValidUser + "?AppEnvMasterId=" +
-                        URLEncoder.encode("z207", "UTF-8") + "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
+                       // URLEncoder.encode("z207", "UTF-8") + "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
+                        URLEncoder.encode("ail", "UTF-8") + "&PlantId=" + URLEncoder.encode("1", "UTF-8") +
                         "&UserLoginId=" + URLEncoder.encode(id, "UTF-8") + "&UserPwd=" + URLEncoder.encode(Password, "UTF-8");
                 res = CommonClass.OpenConnection(url, HOTWorkActivity.this);
                 response = res.toString().replaceAll("\\\\", "");
