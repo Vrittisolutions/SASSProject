@@ -106,7 +106,7 @@ public class AlarmListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
 
-            String url = CompanyURL + WebAPIUrl.GetAlaPlantrmTagData;
+            String url = CompanyURL + WebAPIUrl.GetAlarmTagData;
 
             try {
                 res = CommonClass.OpenConnection(url, AlarmListActivity.this);
